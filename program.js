@@ -3,6 +3,7 @@
   var path = require('path');
   var jade = require('jade');
   var bodyParser = require('body-parser');
+  var stylus = require('stylus');
   var app = express();
 
   // ROUTING
@@ -25,12 +26,19 @@
   //
 
   // GOOD OLD FORM
-  app.use(bodyParser.urlencoded({extended: false}));
-  app.get('/form', function(req, res) {
-    res.end('<form><input name="str"/></form>');
-  });
-  app.post('/form', function(req, res) {
-    res.end(req.body.str.split('').reverse().join(''));
-  });
+  // app.use(bodyParser.urlencoded({extended: false}));
+  // app.get('/form', function(req, res) {
+  //   res.end('<form><input name="str"/></form>');
+  // });
+  // app.post('/form', function(req, res) {
+  //   res.end(req.body.str.split('').reverse().join(''));
+  // });
+
+  // CSS FUN
+  // var folder = (process.argv[3] || path.join(__dirname, 'public'));
+  var folder = (path.join(__dirname, 'public'));
+  app.use(require('stylus').middleware(folder));
+  app.use(express.static(folder));
+
 
   app.listen(process.argv[2]);
