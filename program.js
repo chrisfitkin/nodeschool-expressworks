@@ -2,7 +2,7 @@
   var express = require('express');
   var path = require('path');
   var jade = require('jade');
-  var bodyparser = require('body-parser');
+  var bodyParser = require('body-parser');
   var app = express();
 
   // ROUTING
@@ -25,7 +25,7 @@
   //
 
   // GOOD OLD FORM
-  app.use(bodyparser.urlencoded({extended: false}));
+  app.use(bodyParser.urlencoded({extended: false}));
   app.get('/form', function(req, res) {
     res.end('<form><input name="str"/></form>');
   });
